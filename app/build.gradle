@@ -5,11 +5,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion $COMPILE_SDK_VERSION
+    compileSdkVersion 28
     defaultConfig {
         applicationId "giavu.co.jp.taxifare"
-        minSdkVersion $MIN_SDK_VERSION
-        targetSdkVersion $TARGET_SDK_VERSION
+        minSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
