@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1090172503838",
+    "firebase_url": "https://quotelife-dev.firebaseio.com",
+    "project_id": "quotelife-dev",
+    "storage_bucket": "quotelife-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090172503838:android:f6b0b8d3a9313c16",
+        "android_client_info": {
+          "package_name": "giavu.hoangvm.hh.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090172503838-u72hh8lmnjj0ov12gfl41v847jc0qltv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACAJmZGRPoccpxinzjRO6LLq9sKLBWwSQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,8 @@
-package giavu.co.jp.taxifare
+package giavu.co.jp.taxifare.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import giavu.co.jp.taxifare.R
 
 class MainActivity : AppCompatActivity() {
 
