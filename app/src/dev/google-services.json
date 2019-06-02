@@ -1,39 +1,37 @@
 {
   "project_info": {
-    "project_number": "1090172503838",
-    "firebase_url": "https://quotelife-dev.firebaseio.com",
-    "project_id": "quotelife-dev",
-    "storage_bucket": "quotelife-dev.appspot.com"
+    "project_number": "480325851637",
+    "firebase_url": "https://taxifare-dev.firebaseio.com",
+    "project_id": "taxifare-dev",
+    "storage_bucket": "taxifare-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1090172503838:android:f6b0b8d3a9313c16",
+        "mobilesdk_app_id": "1:480325851637:android:97e4d495c4ae2c4b",
         "android_client_info": {
-          "package_name": "giavu.hoangvm.hh.dev"
+          "package_name": "giavu.co.jp.taxifare.dev"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1090172503838-u72hh8lmnjj0ov12gfl41v847jc0qltv.apps.googleusercontent.com",
+          "client_id": "480325851637-76e76nog7hv2pm603hek8b5bum3ihkso.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyACAJmZGRPoccpxinzjRO6LLq9sKLBWwSQ"
+          "current_key": "AIzaSyDVwlFluGOzZPEXu_6R6tlSgG7aQ0iaKm0"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480325851637-76e76nog7hv2pm603hek8b5bum3ihkso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
