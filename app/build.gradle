@@ -34,17 +34,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    flavorDimensions "taxifare"
-    productFlavors {
-        dev {
-            dimension "taxifare"
-            applicationIdSuffix ".dev"
 
-        }
-        pro {
-            dimension "taxifare"
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -108,8 +98,6 @@ dependencies {
 
     implementation 'com.google.maps.android:android-maps-utils:0.5'
     implementation(name: 'google-maps-sdk-m4b', ext: 'aar')
-    implementation('com.crashlytics.sdk.android:crashlytics:2.9.9@aar') {
-        transitive = true
-    }
+
 }
 apply plugin: 'com.google.gms.google-services'
