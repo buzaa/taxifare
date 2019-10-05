@@ -10,7 +10,7 @@ import giavu.co.jp.repository.network.retrofit.ApiAccessor
  */
 class TaxiFareApiAccessor(private val context: Context) : ApiAccessor(context = context) {
     override fun getBaseUrl(): String {
-        return context.getString(R.string.app_scheme) + "://" + context.getString(R.string.connpass_api)
+        return context.getString(R.string.base_url)
     }
 
     override fun onCreateHeaders(headers: MutableMap<String, String>) {
