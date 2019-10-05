@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.maps.SupportMapFragment
+import giavu.co.jp.taxifare.activity.MainViewModel
+import org.koin.android.ext.android.inject
 
 /**
  * @Author: Hoang Vu
@@ -19,6 +21,8 @@ class MapFragment : SupportMapFragment() {
         private const val REQUEST_LOCATION_PERMISSION = 1
     }
 
+    private val mainViewModel: MainViewModel by inject()
+
     override fun onInflate(context: Context, attrs: AttributeSet, savedInstanceState: Bundle?) {
         super.onInflate(context, attrs, savedInstanceState)
     }
@@ -29,6 +33,12 @@ class MapFragment : SupportMapFragment() {
 
     override fun onCreate(p0: Bundle?) {
         super.onCreate(p0)
+        getMapAsync { googleMap ->
+            googleMap?.let {
+                mainViewModel.init(it)
+            }
+        }
+
     }
 
     override fun onCreateView(p0: LayoutInflater, p1: ViewGroup?, p2: Bundle?): View? {
