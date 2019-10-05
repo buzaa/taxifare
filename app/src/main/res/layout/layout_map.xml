@@ -6,7 +6,7 @@
         android:layout_height="match_parent">
     <fragment
             android:id="@+id/map"
-            android:name="giavu.co.jp.taxifare.fragment.MapFragment"
+            android:name="giavu.co.jp.taxifare.map.MapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"/>

@@ -1,4 +1,4 @@
-package giavu.co.jp.taxifare.app
+package giavu.co.jp.taxifare.taxifare
 
 import android.app.Application
 import giavu.co.jp.taxifare.BuildConfig
