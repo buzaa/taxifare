@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">repository</string>
+    <string name="app_scheme">https</string>
+    <string name="connpass_api">connpass.com/api/</string>
 </resources>
