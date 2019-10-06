@@ -1,5 +1,6 @@
 package giavu.co.jp.taxifare.di
 
+import giavu.co.jp.domain.usecase.FetchNearestSupportCity
 import org.koin.dsl.module.Module
 
 /**
@@ -8,5 +9,6 @@ import org.koin.dsl.module.Module
  */
 class UseCaseModule {
     val module: Module = org.koin.dsl.module.module {
+        single { FetchNearestSupportCity(api = get()) }
     }
 }

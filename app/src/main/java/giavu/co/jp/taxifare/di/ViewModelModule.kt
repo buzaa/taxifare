@@ -12,6 +12,6 @@ import org.koin.dsl.module.Module
 class ViewModelModule {
 
     val module: Module = org.koin.dsl.module.module {
-        viewModel { MainViewModel(application = androidApplication()) }
+        viewModel { MainViewModel(application = androidApplication(), fetchNearestSupportCity = get()) }
     }
 }

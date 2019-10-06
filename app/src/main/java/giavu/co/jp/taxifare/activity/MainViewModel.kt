@@ -3,14 +3,23 @@ package giavu.co.jp.taxifare.activity
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
+import giavu.co.jp.domain.usecase.FetchNearestSupportCity
 import giavu.co.jp.taxifare.map.MapModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 /**
  * @Author: Hoang Vu
  * @Date:   2019-10-05
  */
-class MainViewModel(application: Application) : AndroidViewModel(application), LifecycleObserver {
+class MainViewModel(
+    application: Application,
+    private val fetchNearestSupportCity: FetchNearestSupportCity
+) : AndroidViewModel(application), LifecycleObserver {
 
     enum class CameraState {
         MOVE,
@@ -27,5 +36,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application), L
             map = map
         )
         mapModel.initialize()
+    }
+
+    fun fetch() {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                withContext(Dispatchers.IO) {
+                    fetchNearestSupportCity(location = "35.681167, 139.767052")
+                }
+            }.onSuccess {
+                Timber.d(it.toString())
+            }.onFailure {
+                Timber.d(it)
+            }
+        }
     }
 }

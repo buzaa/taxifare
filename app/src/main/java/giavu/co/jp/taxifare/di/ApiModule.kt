@@ -1,6 +1,8 @@
 package giavu.co.jp.taxifare.di
 
+import giavu.co.jp.repository.network.api.TaxiFareApi
 import giavu.co.jp.repository.network.core.TaxiFareApiAccessor
+import giavu.co.jp.repository.network.retrofit.ApiAccessor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module.Module
 
@@ -12,5 +14,6 @@ class ApiModule {
 
     val module: Module = org.koin.dsl.module.module {
         single { TaxiFareApiAccessor(androidApplication()).from() }
+        single { get<ApiAccessor>().using(TaxiFareApi::class.java) }
     }
 }
