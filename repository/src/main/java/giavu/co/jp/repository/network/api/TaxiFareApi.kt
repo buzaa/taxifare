@@ -10,7 +10,7 @@ import retrofit2.http.Query
  */
 interface TaxiFareApi {
 
-    @GET("/entity?key=dFAWsAtfv9jT")
+    @GET("/entity?key=NLYBQw5mh26J")
     suspend fun  findNearestSupportCity(@Query("location") location: String): CityDetails
 
 }

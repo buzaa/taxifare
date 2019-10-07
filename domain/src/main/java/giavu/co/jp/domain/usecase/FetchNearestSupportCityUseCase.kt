@@ -7,7 +7,7 @@ import giavu.co.jp.repository.network.api.TaxiFareApi
  * @Author: Hoang Vu
  * @Date:   2019-10-05
  */
-class FetchNearestSupportCity(
+class FetchNearestSupportCityUseCase(
     private val api: TaxiFareApi
 ) {
 

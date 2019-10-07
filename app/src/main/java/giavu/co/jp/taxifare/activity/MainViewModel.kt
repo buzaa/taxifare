@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
-import giavu.co.jp.domain.usecase.FetchNearestSupportCity
+import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
 import giavu.co.jp.taxifare.map.MapModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ import timber.log.Timber
  */
 class MainViewModel(
     application: Application,
-    private val fetchNearestSupportCity: FetchNearestSupportCity
+    private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
 ) : AndroidViewModel(application), LifecycleObserver {
 
     enum class CameraState {
@@ -42,7 +42,7 @@ class MainViewModel(
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    fetchNearestSupportCity(location = "35.681167, 139.767052")
+                    fetchNearestSupportCityUseCase(location = "35.681167, 139.767052")
                 }
             }.onSuccess {
                 Timber.d(it.toString())
