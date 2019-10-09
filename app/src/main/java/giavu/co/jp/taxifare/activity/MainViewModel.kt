@@ -42,7 +42,7 @@ class MainViewModel(
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    fetchNearestSupportCityUseCase(location = "35.681167, 139.767052")
+                    fetchNearestSupportCityUseCase(location = "35.681167,139.767052")
                 }
             }.onSuccess {
                 Timber.d(it.toString())

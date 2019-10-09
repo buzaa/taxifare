@@ -1,6 +1,8 @@
 package giavu.co.jp.taxifare.di
 
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
+import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module.Module
 
 /**
@@ -10,5 +12,6 @@ import org.koin.dsl.module.Module
 class UseCaseModule {
     val module: Module = org.koin.dsl.module.module {
         single { FetchNearestSupportCityUseCase(api = get()) }
+        factory { FetchMyLocationUseCase(context = androidApplication()) }
     }
 }
