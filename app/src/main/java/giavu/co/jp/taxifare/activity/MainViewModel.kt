@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
+import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
 import giavu.co.jp.taxifare.map.MapModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +19,7 @@ import timber.log.Timber
  */
 class MainViewModel(
     application: Application,
+    private val myLocationUseCase: FetchMyLocationUseCase,
     private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
 ) : AndroidViewModel(application), LifecycleObserver {
 
