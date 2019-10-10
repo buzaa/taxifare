@@ -9,6 +9,7 @@ import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
 import giavu.co.jp.taxifare.map.MapModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -44,7 +45,12 @@ class MainViewModel(
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    fetchNearestSupportCityUseCase(location = "35.681167,139.767052")
+                    val location = async {
+                        myLocationUseCase()
+                    }
+                    val supportCity = async {
+                        fetchNearestSupportCityUseCase(location = location.toString())
+                    }
                 }
             }.onSuccess {
                 Timber.d(it.toString())
