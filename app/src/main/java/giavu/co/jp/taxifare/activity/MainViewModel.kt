@@ -52,7 +52,7 @@ class MainViewModel(
                         fetchNearestSupportCityUseCase(location = location.toString())
                     }
                 }
-            }.onSuccess {
+            }.onSuccess { city -> 
                 Timber.d(it.toString())
             }.onFailure {
                 Timber.d(it)
