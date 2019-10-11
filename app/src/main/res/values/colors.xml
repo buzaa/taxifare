@@ -7,4 +7,6 @@
     <color name="colorTransparent">#00000000</color>
     <color name="black">#1D1D1D</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="grayish_blue100">#F1F2F5</color>
 </resources>
