@@ -4,10 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.viewModelScope
-import com.google.android.gms.maps.GoogleMap
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
-import giavu.co.jp.taxifare.map.MapModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx2.await
@@ -27,18 +25,6 @@ class MainViewModel(
     enum class CameraState {
         MOVE,
         IDLE,
-    }
-
-    private lateinit var mapModel: MapModel
-
-    fun init(
-        map: GoogleMap
-    ) {
-        mapModel = MapModel(
-            context = getApplication(),
-            map = map
-        )
-        mapModel.initialize()
     }
 
     fun fetch() {
