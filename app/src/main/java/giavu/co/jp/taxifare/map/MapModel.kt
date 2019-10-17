@@ -71,7 +71,6 @@ class MapModel(
             _isAdjustSkippable.value = it?.let { ADJUST_ZOOM_LEVEL <= it } ?: false
         }
         _zoomLevel.value = map.cameraPosition.zoom
-
         requestMyLocation()
     }
 
