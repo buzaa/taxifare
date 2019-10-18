@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialize() {
-        viewModel.fetch()
+
     }
 
 }

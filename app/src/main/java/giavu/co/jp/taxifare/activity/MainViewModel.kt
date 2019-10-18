@@ -1,13 +1,18 @@
 package giavu.co.jp.taxifare.activity
 
+import android.annotation.SuppressLint
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
 import giavu.co.jp.taxifare.map.MapModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx2.await
@@ -20,7 +25,7 @@ import timber.log.Timber
  */
 class MainViewModel(
     application: Application,
-    private val myLocationUseCase: FetchMyLocationUseCase,
+    private val fetchMyLocationUseCase: FetchMyLocationUseCase,
     private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
 ) : AndroidViewModel(application), LifecycleObserver {
 
@@ -40,7 +45,7 @@ class MainViewModel(
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    val location = myLocationUseCase().map {
+                    val location = fetchMyLocationUseCase().map {
                         it.latitude.toString().plus(",").plus(it.longitude.toString())
                     }.await()
                     fetchNearestSupportCityUseCase(location = location)
@@ -51,5 +56,20 @@ class MainViewModel(
                 Timber.d(it)
             }
         }
+    }
+
+    @SuppressLint("CheckResult")
+    fun moveMyLocation() {
+        fetchMyLocationUseCase()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onError = Timber::w,
+                onSuccess = {
+                    LatLng(it.latitude, it.longitude).let { location ->
+                        model.moveCamera(location)
+                    }
+                }
+            )
     }
 }

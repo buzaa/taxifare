@@ -15,7 +15,7 @@ class ViewModelModule {
         viewModel {
             MainViewModel(
                 application = androidApplication(),
-                myLocationUseCase = get(),
+                fetchMyLocationUseCase = get(),
                 fetchNearestSupportCityUseCase = get()
             )
         }

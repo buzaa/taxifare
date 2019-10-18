@@ -74,6 +74,10 @@ class MapModel(
         requestMyLocation()
     }
 
+    fun moveCamera(latLng: LatLng) {
+        map.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+    }
+
     fun requestMyLocation() {
         if (hasLocationPermission()) {
             @SuppressLint("MissingPermission")
