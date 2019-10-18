@@ -29,12 +29,14 @@ class MainViewModel(
     fun initialize(
         map: GoogleMap
     ) {
+        Timber.d("initialize")
         model = MapModel(context = getApplication(), map = map)
         model.initialize()
     }
 
 
     fun fetch() {
+        Timber.d("fetching")
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
