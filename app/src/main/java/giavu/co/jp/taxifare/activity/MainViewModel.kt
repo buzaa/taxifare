@@ -72,4 +72,8 @@ class MainViewModel(
                 }
             )
     }
+
+    fun requestMyLocation() {
+        model.requestMyLocation()
+    }
 }

@@ -54,12 +54,15 @@ class MapFragment : SupportMapFragment() {
             REQUEST_LOCATION_PERMISSION -> {
                 for (i in permissions.indices) {
                     if (Manifest.permission.ACCESS_FINE_LOCATION == permissions[i] &&
-                        grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                        grantResults[i] == PackageManager.PERMISSION_GRANTED
+                    ) {
                         viewModel.moveMyLocation()
+                        viewModel.requestMyLocation()
                     } else {
                         requestPermissions(
                             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                            REQUEST_LOCATION_PERMISSION)
+                            REQUEST_LOCATION_PERMISSION
+                        )
                     }
                 }
             }
@@ -75,12 +78,11 @@ class MapFragment : SupportMapFragment() {
         )
         if (permissionResultFineLocation == PackageManager.PERMISSION_GRANTED) {
             viewModel.moveMyLocation()
-            return
+        } else {
+            requestPermissions(
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION_PERMISSION
+            )
         }
-
-        requestPermissions(
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_LOCATION_PERMISSION
-        )
     }
 }
