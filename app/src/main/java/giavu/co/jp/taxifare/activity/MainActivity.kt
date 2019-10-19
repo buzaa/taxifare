@@ -6,12 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.extension.setOnProtectBarrageClickListener
 import kotlinx.android.synthetic.main.layout_bottom_sheet.*
-import org.koin.android.ext.android.inject
-import timber.log.Timber
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by inject()
+    private val viewModel : MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initialize() {
         pickup.setOnProtectBarrageClickListener {
-            Timber.d("Pickup location is :%s", viewModel.centerLocation.value.toString())
+            viewModel.setPickup()
         }
         dropoff.setOnProtectBarrageClickListener {
-            Timber.d("Drop-off location is :%s", viewModel.centerLocation.value.toString())
         }
     }
 

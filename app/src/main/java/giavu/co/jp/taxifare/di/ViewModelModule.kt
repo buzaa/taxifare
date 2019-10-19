@@ -4,6 +4,7 @@ import giavu.co.jp.taxifare.activity.MainViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.Module
+import org.koin.dsl.module.module
 
 /**
  * @Author: Hoang Vu
@@ -11,13 +12,9 @@ import org.koin.dsl.module.Module
  */
 class ViewModelModule {
 
-    val module: Module = org.koin.dsl.module.module {
+    val module: Module = module {
         viewModel {
-            MainViewModel(
-                application = androidApplication(),
-                fetchMyLocationUseCase = get(),
-                fetchNearestSupportCityUseCase = get()
-            )
+            MainViewModel(application = androidApplication())
         }
     }
 }
