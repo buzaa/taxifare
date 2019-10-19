@@ -2,9 +2,7 @@ package giavu.co.jp.taxifare.activity
 
 import android.annotation.SuppressLint
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
@@ -30,6 +28,9 @@ class MainViewModel(
 ) : AndroidViewModel(application), LifecycleObserver {
 
     private lateinit var model: MapModel
+    private val _centerLocation = MutableLiveData<LatLng>()
+    val centerLocation: LiveData<LatLng>
+        get() = _centerLocation
 
     fun initialize(
         map: GoogleMap
@@ -37,6 +38,9 @@ class MainViewModel(
         Timber.d("initialize")
         model = MapModel(context = getApplication(), map = map)
         model.initialize()
+        model.centerLocation.observeForever {
+            _centerLocation.value = it
+        }
     }
 
 
