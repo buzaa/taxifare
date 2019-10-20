@@ -15,9 +15,9 @@
         android:layout_weight="1"
         android:fitsSystemWindows="true" />
 
-    <include
+    <fragment
         android:id="@+id/bottom_sheet"
-        layout="@layout/layout_bottom_sheet"
+        android:name="giavu.co.jp.taxifare.result.BoardFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
