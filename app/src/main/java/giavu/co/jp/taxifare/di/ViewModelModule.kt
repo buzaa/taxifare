@@ -2,9 +2,9 @@ package giavu.co.jp.taxifare.di
 
 import giavu.co.jp.taxifare.activity.MainViewModel
 import org.koin.android.ext.koin.androidApplication
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.Module
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
 /**
  * @Author: Hoang Vu

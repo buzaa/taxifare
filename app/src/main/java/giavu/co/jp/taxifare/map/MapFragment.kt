@@ -12,7 +12,7 @@ import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.activity.MainViewModel
 import giavu.co.jp.taxifare.extension.setOnProtectBarrageClickListener
 import kotlinx.android.synthetic.main.layout_fragment_map.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * @Author: Hoang Vu
@@ -24,7 +24,7 @@ class MapFragment : SupportMapFragment() {
         private const val REQUEST_LOCATION_PERMISSION = 1
     }
 
-    private val viewModel : MainViewModel by viewModel()
+    private val viewModel : MainViewModel by sharedViewModel()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
