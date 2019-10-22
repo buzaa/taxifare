@@ -31,6 +31,7 @@ class MapFragment : SupportMapFragment() {
         super.onViewCreated(view, savedInstanceState)
         getMapAsync { googleMap ->
             viewModel.initialize(googleMap)
+            viewModel.moveMyLocation()
         }
         my_location.setOnProtectBarrageClickListener {
             requestPermissionIfNeeds()

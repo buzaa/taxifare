@@ -17,4 +17,21 @@
         app:srcCompat="@drawable/ic_gps_gray_900"
         tools:ignore="ContentDescription" />
 
+    <ImageView
+        android:id="@+id/pin_center"
+        android:layout_width="@dimen/dimen_48dp"
+        android:layout_height="@dimen/dimen_40dp"
+        android:background="@drawable/ic_pickup"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/center_baseline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/center_baseline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
