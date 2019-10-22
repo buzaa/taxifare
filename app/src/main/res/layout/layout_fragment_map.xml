@@ -20,7 +20,7 @@
     <ImageView
         android:id="@+id/pin_center"
         android:layout_width="@dimen/dimen_48dp"
-        android:layout_height="@dimen/dimen_40dp"
+        android:layout_height="@dimen/dimen_48dp"
         android:background="@drawable/ic_pickup"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/center_baseline"
