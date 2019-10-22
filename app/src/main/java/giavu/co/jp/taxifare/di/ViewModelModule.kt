@@ -15,7 +15,11 @@ class ViewModelModule {
 
     val module: Module = module {
         viewModel {
-            MainViewModel(application = androidApplication())
+            MainViewModel(
+                application = androidApplication(),
+                fetchMyLocationUseCase = get(),
+                fetchNearestSupportCityUseCase = get()
+            )
         }
         viewModel {
             BoardViewModel()

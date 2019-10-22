@@ -17,17 +17,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx2.await
 import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 /**
  * @Author: Hoang Vu
  * @Date:   2019-10-05
  */
-class MainViewModel(val application: Application): ViewModel() {
-
-    private val fetchMyLocationUseCase: FetchMyLocationUseCase by application.inject()
-    private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase by application.inject()
+class MainViewModel(
+    val application: Application,
+    private val fetchMyLocationUseCase: FetchMyLocationUseCase,
+    private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
+): ViewModel() {
 
     private lateinit var model: MapModel
     private val _centerLocation = MutableLiveData<LatLng>()
@@ -87,7 +87,4 @@ class MainViewModel(val application: Application): ViewModel() {
         model.requestMyLocation()
     }
 
-    fun setPickup() {
-        Timber.d("Pickup%s", _centerLocation.value.toString())
-    }
 }
