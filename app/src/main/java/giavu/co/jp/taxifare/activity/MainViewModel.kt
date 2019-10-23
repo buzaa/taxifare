@@ -2,6 +2,7 @@ package giavu.co.jp.taxifare.activity
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,10 +28,18 @@ class MainViewModel(
     val application: Application,
     private val fetchMyLocationUseCase: FetchMyLocationUseCase,
     private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
-): ViewModel() {
+) : ViewModel() {
+
+    enum class CameraState {
+        MOVE,
+        IDLE,
+    }
 
     private lateinit var model: MapModel
     private val _centerLocation = MutableLiveData<LatLng>()
+    private val _cameraState = MutableLiveData<CameraState>()
+    val cameraState: LiveData<CameraState>
+        get() = _cameraState
 
     fun initialize(
         map: GoogleMap
@@ -38,6 +47,8 @@ class MainViewModel(
         Timber.d("initialize")
         model = MapModel(context = application.applicationContext, map = map)
         model.initialize()
+        model.startCameraEvent.observeForever { _cameraState.value = CameraState.MOVE }
+        model.idleCameraEvent.observeForever { _cameraState.value = CameraState.IDLE }
         observeMap()
 
     }

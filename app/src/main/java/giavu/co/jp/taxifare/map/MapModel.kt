@@ -36,17 +36,10 @@ class MapModel(
     val zoomLevel: LiveData<Float>
         get() = _zoomLevel
 
-    private val _isAdjustSkippable = MutableLiveData<Boolean>()
-    val isAdjustSkippable: LiveData<Boolean>
-        get() = _isAdjustSkippable
-
     private val _idleCameraEvent = MutableLiveData<Unit>()
     val idleCameraEvent: LiveData<Unit>
         get() = _idleCameraEvent
 
-    private val _moveCameraEvent = MutableLiveData<Unit>()
-    val moveCameraEvent: LiveData<Unit>
-        get() = _moveCameraEvent
 
     private val _startCameraEvent = MutableLiveData<Unit>()
     val startCameraEvent: LiveData<Unit>
@@ -75,15 +68,13 @@ class MapModel(
         }
 
         map.setOnCameraIdleListener(::onCameraIdle)
+        map.setOnCameraMoveStartedListener(::onCameraStart)
 
         val location = initialLocation ?: TOKYO_STATION_LOCATION
         val zoom = initialZoomLevel ?: DEFAULT_ZOOM_LEVEL
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoom))
 
-        _zoomLevel.observeForever {
-            _isAdjustSkippable.value = it?.let { ADJUST_ZOOM_LEVEL <= it } ?: false
-        }
         _zoomLevel.value = map.cameraPosition.zoom
         requestMyLocation()
     }
@@ -97,6 +88,11 @@ class MapModel(
         Timber.d("onCameraIdle:$centerLatLon")
         _centerLocation.value = centerLatLon
         _idleCameraEvent.postValue(Unit)
+    }
+
+    private fun onCameraStart(status: Int) {
+        Timber.d("onCameraStart $status")
+        _startCameraEvent.postValue(Unit)
     }
 
     fun requestMyLocation() {

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFF</color>
 
     <color name="grayish_blue100">#F1F2F5</color>
+    <color name="pin_color">#3931AC</color>
 </resources>

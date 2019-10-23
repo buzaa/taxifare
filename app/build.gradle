@@ -52,7 +52,6 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "com.shopify:livedata-ktx:3.0.0"
 
-    implementation "com.airbnb.android:lottie:3.0.0"
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
     implementation "de.psdev.licensesdialog:licensesdialog:1.9.0"

@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.google.android.gms.maps.SupportMapFragment
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.activity.MainViewModel
 import giavu.co.jp.taxifare.extension.setOnProtectBarrageClickListener
 import kotlinx.android.synthetic.main.layout_fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import timber.log.Timber
 
 /**
  * @Author: Hoang Vu
@@ -23,16 +25,37 @@ class MapFragment : SupportMapFragment() {
     companion object {
         private const val REQUEST_LOCATION_PERMISSION = 1
     }
+    private enum class CenterPinType(val value: Int) {
+        PICKUP(0),
+        DROPOFF(1);
+
+        companion object {
+            fun from(value: Int): CenterPinType = values().find { it.value == value } ?: PICKUP
+        }
+    }
 
     private val viewModel : MainViewModel by sharedViewModel()
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         getMapAsync { googleMap ->
             viewModel.initialize(googleMap)
             viewModel.moveMyLocation()
+            observeMap()
         }
+    }
+
+    private fun onChangedCameraState(state: MainViewModel.CameraState) {
+        Timber.d("onChangedCameraState:$state")
+        center_pin.apply {
+            setAnimation("pin_idle.json")
+            playAnimation()
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         my_location.setOnProtectBarrageClickListener {
             requestPermissionIfNeeds()
         }
@@ -70,6 +93,15 @@ class MapFragment : SupportMapFragment() {
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
+        }
+    }
+
+    private fun observeMap() {
+        with(viewModel) {
+            cameraState.observe(
+                this@MapFragment,
+                Observer { it?.also { state -> onChangedCameraState(state) } }
+            )
         }
     }
 
