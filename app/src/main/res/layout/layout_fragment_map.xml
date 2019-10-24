@@ -21,22 +21,12 @@
         android:id="@+id/pin_center"
         android:layout_width="@dimen/dimen_48dp"
         android:layout_height="@dimen/dimen_48dp"
-        android:background="@drawable/ic_pickup"
+        android:background="@drawable/ic_start"
         android:contentDescription="@string/app_name"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/center_baseline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/center_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintBottom_toTopOf="@+id/center_baseline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/center_baseline"

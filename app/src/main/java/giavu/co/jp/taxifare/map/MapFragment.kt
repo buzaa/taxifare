@@ -47,10 +47,7 @@ class MapFragment : SupportMapFragment() {
 
     private fun onChangedCameraState(state: MainViewModel.CameraState) {
         Timber.d("onChangedCameraState:$state")
-        center_pin.apply {
-            setAnimation("pin_idle.json")
-            playAnimation()
-        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
