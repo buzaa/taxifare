@@ -47,7 +47,18 @@ class MapFragment : SupportMapFragment() {
 
     private fun onChangedCameraState(state: MainViewModel.CameraState) {
         Timber.d("onChangedCameraState:$state")
+        center_pin.apply {
+            when(state) {
+                MainViewModel.CameraState.MOVE -> {
 
+                }
+                MainViewModel.CameraState.IDLE -> {
+                    setAnimation("huyly.json")
+                    playAnimation()
+                }
+            }
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
