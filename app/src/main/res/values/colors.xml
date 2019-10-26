@@ -10,4 +10,29 @@
 
     <color name="grayish_blue100">#F1F2F5</color>
     <color name="pin_color">#3931AC</color>
+
+    <color name="status_bar">#000000</color>
+    <color name="app_bar">#212121</color>
+    <color name="background">#303030</color>
+    <color name="card_dialogs">#424242</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_disable">#80FFFFFF</color>
+
+    <color name="surface">#FFFFFF</color>
+    <color name="primary">#000000</color>
+    <color name="dark_grey">#121212</color>
+    <color name="dark_primary">#1F1B24</color>
+    <color name="dark_primary_8per">#141F1B24</color>
+    <color name="primary_variant_700">#3700B3</color>
+    <color name="primary_200">#BB86FC</color>
+    <color name="error">#CF6679</color>
+    <color name="primary_text">#FF0266</color>
+
+    <color name="gray300">#D6D6D6</color>
+    <color name="link_text">@color/blue500</color>
+    <color name="error_text">@color/red500</color>
+    <color name="blue500">#0079CE</color>
+    <color name="red500">#DA2643</color>
 </resources>
