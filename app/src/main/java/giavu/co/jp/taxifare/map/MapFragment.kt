@@ -25,6 +25,7 @@ class MapFragment : SupportMapFragment() {
     companion object {
         private const val REQUEST_LOCATION_PERMISSION = 1
     }
+
     private enum class CenterPinType(val value: Int) {
         PICKUP(0),
         DROPOFF(1);
@@ -34,7 +35,7 @@ class MapFragment : SupportMapFragment() {
         }
     }
 
-    private val viewModel : MainViewModel by sharedViewModel()
+    private val viewModel: MainViewModel by sharedViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +49,7 @@ class MapFragment : SupportMapFragment() {
     private fun onChangedCameraState(state: MainViewModel.CameraState) {
         Timber.d("onChangedCameraState:$state")
         center_pin.apply {
-            when(state) {
+            when (state) {
                 MainViewModel.CameraState.MOVE -> {
 
                 }
@@ -57,7 +58,6 @@ class MapFragment : SupportMapFragment() {
                     playAnimation()
                 }
             }
-
         }
     }
 
