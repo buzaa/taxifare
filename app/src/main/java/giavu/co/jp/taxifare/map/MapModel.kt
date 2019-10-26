@@ -4,12 +4,16 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 
 /**
@@ -81,6 +85,18 @@ class MapModel(
 
     fun moveCamera(latLng: LatLng) {
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+    }
+
+    fun addMarker(@DrawableRes resourceId: Int, location: LatLng): Marker {
+        val markerOptions = MarkerOptions().apply {
+            position(location)
+            icon(BitmapDescriptorFactory.fromResource(resourceId))
+        }
+        return addMarker(markerOptions)
+    }
+
+    private fun addMarker(option: MarkerOptions): Marker {
+        return map.addMarker(option)
     }
 
     private fun onCameraIdle() {

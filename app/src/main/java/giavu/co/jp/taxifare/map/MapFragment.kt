@@ -53,7 +53,7 @@ class MapFragment : SupportMapFragment() {
 
                 }
                 MainViewModel.CameraState.IDLE -> {
-                    setAnimation("huyly.json")
+                    setAnimation("pin_location_animation.json")
                     playAnimation()
                 }
             }

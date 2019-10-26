@@ -2,6 +2,7 @@ package giavu.co.jp.taxifare.activity
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -51,6 +52,10 @@ class MainViewModel(
         model.idleCameraEvent.observeForever { _cameraState.value = CameraState.IDLE }
         observeMap()
 
+    }
+
+    fun addMarker(@DrawableRes resourceId: Int, location: LatLng) {
+        model.addMarker(resourceId, location)
     }
 
     private fun observeMap() {
