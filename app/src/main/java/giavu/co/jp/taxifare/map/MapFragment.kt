@@ -51,7 +51,7 @@ class MapFragment : SupportMapFragment() {
         center_pin.apply {
             when (state) {
                 MainViewModel.CameraState.MOVE -> {
-
+                    pauseAnimation()
                 }
                 MainViewModel.CameraState.IDLE -> {
                     setAnimation("pin_location_animation.json")

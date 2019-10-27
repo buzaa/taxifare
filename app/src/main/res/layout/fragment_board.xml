@@ -43,5 +43,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:onClick="@{() -> viewModel.selectPickup()}" />
 
+        <Button
+            android:id="@+id/dropoff"
+            style="@style/MainPrimaryButton"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:text="@string/label_destination"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:onClick="@{() -> viewModel.selectDropOff()}" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
