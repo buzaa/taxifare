@@ -11,33 +11,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet"
-        android:background="@drawable/background_bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/background_bottom_sheet"
         android:clickable="true"
         android:focusable="true">
 
+        <TextView
+            style="@style/HeadLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:layout_marginBottom="@dimen/dimen_28dp"
+            android:gravity="center"
+            android:text="@string/start_location"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/pickup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/pickup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_56dp"
-            android:text="Pickup here"
+            style="@style/MainPrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:text="@string/label_start"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:onClick="@{() -> viewModel.selectPickup()}" />
 
-        <Button
-            android:id="@+id/dropoff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10dp"
-            android:text="Drop-off here"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pickup"
-            app:onClick="@{() -> viewModel.selectDropOff()}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

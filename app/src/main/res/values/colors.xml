@@ -29,10 +29,20 @@
     <color name="primary_200">#BB86FC</color>
     <color name="error">#CF6679</color>
     <color name="primary_text">#FF0266</color>
+    <color name="primary_btn_color">#DE0085</color>
+    <color name="primary_btn_color_red">#AF056B</color>
 
     <color name="gray300">#D6D6D6</color>
     <color name="link_text">@color/blue500</color>
     <color name="error_text">@color/red500</color>
     <color name="blue500">#0079CE</color>
     <color name="red500">#DA2643</color>
+
+    <!-- main button colors -->
+    <color name="main_primary_button_background">@color/primary_btn_color_red</color>
+    <color name="main_primary_button_background_on_pressed">@color/primary_btn_color</color>
+    <color name="main_primary_button_text">@color/white</color>
+    <color name="main_disabled_on_light_background">@color/gray300</color>
+    <color name="main_disabled_text">@color/white</color>
+
 </resources>
