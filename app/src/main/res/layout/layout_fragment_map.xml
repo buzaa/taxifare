@@ -11,8 +11,8 @@
         android:layout_width="@dimen/dimen_48dp"
         android:layout_height="@dimen/dimen_48dp"
         android:layout_margin="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@id/center_baseline"
         android:elevation="@dimen/default_elevation"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_gps_gray_900"
         tools:ignore="ContentDescription" />
@@ -34,6 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
