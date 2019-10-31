@@ -63,7 +63,9 @@ class MainViewModel(
     }
 
     fun selectDropOff() {
-
+        _centerLocation.value?.let {
+            model.addMarker(resourceId = R.drawable.ic_goal, location = it)
+        }
     }
 
     private fun observeMap() {
