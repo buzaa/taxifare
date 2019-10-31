@@ -1,7 +1,6 @@
 package giavu.co.jp.taxifare.di
 
 import giavu.co.jp.taxifare.activity.MainViewModel
-import giavu.co.jp.taxifare.result.BoardViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -20,9 +19,6 @@ class ViewModelModule {
                 fetchMyLocationUseCase = get(),
                 fetchNearestSupportCityUseCase = get()
             )
-        }
-        viewModel {
-            BoardViewModel()
         }
     }
 }

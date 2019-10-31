@@ -2,7 +2,6 @@ package giavu.co.jp.taxifare.activity
 
 import android.annotation.SuppressLint
 import android.app.Application
-import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
+import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
 import giavu.co.jp.taxifare.map.MapModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -38,6 +38,8 @@ class MainViewModel(
 
     private lateinit var model: MapModel
     private val _centerLocation = MutableLiveData<LatLng>()
+    val centerLocation: LiveData<LatLng>
+        get() = _centerLocation
     private val _cameraState = MutableLiveData<CameraState>()
     val cameraState: LiveData<CameraState>
         get() = _cameraState
@@ -54,8 +56,14 @@ class MainViewModel(
 
     }
 
-    fun addMarker(@DrawableRes resourceId: Int, location: LatLng) {
-        model.addMarker(resourceId, location)
+    fun selectPickup() {
+        _centerLocation.value?.let {
+            model.addMarker(resourceId = R.drawable.ic_start, location = it)
+        }
+    }
+
+    fun selectDropOff() {
+
     }
 
     private fun observeMap() {
