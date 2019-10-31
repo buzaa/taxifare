@@ -8,9 +8,11 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import giavu.co.jp.taxifare.helper.ImageUtils
@@ -117,6 +119,92 @@ class MapModel(
             @SuppressLint("MissingPermission")
             map.isMyLocationEnabled = true
         }
+    }
+
+    private fun animateCameraInner(
+        cameraUpdate: CameraUpdate,
+        animationEndCallback: (() -> Unit)? = null
+    ) {
+        lockGestures()
+        map.animateCamera(
+            cameraUpdate,
+            object : GoogleMap.CancelableCallback {
+                override fun onFinish() {
+                    unlockGestures()
+                    animationEndCallback?.invoke()
+                }
+
+                override fun onCancel() {
+                    unlockGestures()
+                    animationEndCallback?.invoke()
+                }
+            }
+        )
+    }
+
+    private fun lockGestures() {
+        Timber.d("lockGestures")
+        map.uiSettings.apply {
+            isZoomGesturesEnabled = false
+            isScrollGesturesEnabled = false
+        }
+    }
+
+    private fun unlockGestures() {
+        Timber.d("unlockGestures")
+        map.uiSettings.apply {
+            isZoomGesturesEnabled = true
+            isScrollGesturesEnabled = true
+        }
+    }
+
+    fun animateCamera(
+        bounds: LatLngBounds,
+        padding: Int,
+        animationEndCallback: (() -> Unit)? = null
+    ) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.newLatLngBounds(
+                bounds,
+                padding
+            ),
+            animationEndCallback = animationEndCallback
+        )
+    }
+
+    fun animateCamera(latLng: LatLng, animationEndCallback: (() -> Unit)? = null) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.newLatLng(latLng),
+            animationEndCallback = animationEndCallback
+        )
+    }
+
+    fun animateCameraWithAdjustZoom(latLng: LatLng, animationEndCallback: (() -> Unit)? = null) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, ADJUST_ZOOM_LEVEL),
+            animationEndCallback = animationEndCallback
+        )
+    }
+
+    fun animateCameraWithAdjustZoom(animationEndCallback: () -> Unit) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.zoomTo(ADJUST_ZOOM_LEVEL),
+            animationEndCallback = animationEndCallback
+        )
+    }
+
+    fun animateCameraWithDefaultZoom(latLng: LatLng, animationEndCallback: () -> Unit) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM_LEVEL),
+            animationEndCallback = animationEndCallback
+        )
+    }
+
+    fun animateCameraWithDefaultZoom(animationEndCallback: () -> Unit) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.zoomTo(DEFAULT_ZOOM_LEVEL),
+            animationEndCallback = animationEndCallback
+        )
     }
 
     private fun hasLocationPermission(): Boolean {

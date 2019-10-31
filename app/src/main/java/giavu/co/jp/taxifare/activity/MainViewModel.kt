@@ -59,6 +59,8 @@ class MainViewModel(
     fun selectPickup() {
         _centerLocation.value?.let {
             model.addMarker(resourceId = R.drawable.ic_start, location = it)
+        }.also {
+
         }
     }
 
@@ -66,6 +68,10 @@ class MainViewModel(
         _centerLocation.value?.let {
             model.addMarker(resourceId = R.drawable.ic_goal, location = it)
         }
+    }
+
+    private fun applyInitialCenterLocation(location: LatLng) {
+        _centerLocation.value = location
     }
 
     private fun observeMap() {
