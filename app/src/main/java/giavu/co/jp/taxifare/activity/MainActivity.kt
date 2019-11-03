@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.databinding.ActivityMainBindingImpl
+import giavu.co.jp.taxifare.map.InitialDropoffLocation
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeMainViewModel() {
         with(mainViewModel) {
             centerLocation.observe(this@MainActivity, Observer {
-
+                InitialDropoffLocation
             })
         }
     }
