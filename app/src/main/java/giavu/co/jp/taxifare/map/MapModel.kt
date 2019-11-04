@@ -12,6 +12,7 @@ import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import giavu.co.jp.taxifare.helper.ImageUtils
@@ -88,6 +89,19 @@ class MapModel(
         map.moveCamera(CameraUpdateFactory.newLatLng(latLng))
     }
 
+    fun moveCamera(bounds: LatLngBounds, padding: Int) {
+        map.moveCamera(
+            CameraUpdateFactory.newLatLngBounds(
+                bounds,
+                padding
+            )
+        )
+    }
+
+    fun setPadding(left: Int, top: Int, right: Int, bottom: Int) {
+        map.setPadding(left, top, right, bottom)
+    }
+
     fun addMarker(@DrawableRes resourceId: Int, location: LatLng): Marker {
         val markerOptions = MarkerOptions().apply {
             position(location)
@@ -160,6 +174,16 @@ class MapModel(
     fun animateCamera(latLng: LatLng, animationEndCallback: (() -> Unit)? = null) {
         animateCameraInner(
             cameraUpdate = CameraUpdateFactory.newLatLng(latLng),
+            animationEndCallback = animationEndCallback
+        )
+    }
+
+    fun animateCamera(bounds: LatLngBounds, padding: Int, animationEndCallback: (() -> Unit)? = null) {
+        animateCameraInner(
+            cameraUpdate = CameraUpdateFactory.newLatLngBounds(
+                bounds,
+                padding
+            ),
             animationEndCallback = animationEndCallback
         )
     }

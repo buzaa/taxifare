@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import giavu.co.jp.domain.model.Location
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.extension.Visibility
@@ -42,7 +43,9 @@ class MainViewModel(
 
     private lateinit var model: MapModel
     private val centerLocation = MutableLiveData<LatLng>()
-
+    private val _calculateRequest = MutableLiveData<Location>()
+    val calculateRequest: LiveData<Location>
+        get() = _calculateRequest
     private val _pickupVisibility = MutableLiveData<Visibility>()
     val pickupVisibility: LiveData<Visibility>
         get() = _pickupVisibility
@@ -55,6 +58,8 @@ class MainViewModel(
     private val _cameraState = MutableLiveData<CameraState>()
     val cameraState: LiveData<CameraState>
         get() = _cameraState
+
+    private val pickupLocation = MutableLiveData<Location.Coordinate>()
 
     fun initialize(
         map: GoogleMap
@@ -77,6 +82,7 @@ class MainViewModel(
 
     fun selectPickup() {
         centerLocation.value?.let { point ->
+            pickupLocation.value = Location.Coordinate(lat = point.latitude, lon = point.longitude)
             model.addMarker(resourceId = R.drawable.ic_start, location = point)
             model.animateCamera(
                 LatLng(
@@ -93,6 +99,12 @@ class MainViewModel(
     fun selectDropOff() {
         centerLocation.value?.let {
             model.addMarker(resourceId = R.drawable.ic_goal, location = it)
+            pickupLocation.value?.let { pickup ->
+                _calculateRequest.value = Location(
+                    pickup = pickup,
+                    dropoff = Location.Coordinate(it.latitude, it.longitude)
+                )
+            }
         }
     }
 
@@ -135,14 +147,6 @@ class MainViewModel(
                     }
                 }
             )
-    }
-
-    fun moveCamera(location: LatLng) {
-        model.moveCamera(location)
-    }
-
-    fun moveCameraAnimation(location: LatLng, callback: (() -> Unit)? = null) {
-        model.animateCamera(location, callback)
     }
 
     fun requestMyLocation() {
