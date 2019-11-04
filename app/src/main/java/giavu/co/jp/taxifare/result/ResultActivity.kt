@@ -89,11 +89,21 @@ class ResultActivity : AppCompatActivity() {
                 fetchTaxiFare(pickup = argument.pickupLocation, dropoff = argument.dropoffLocation)
             })
             myLocation.observe(this@ResultActivity, Observer {
-                loadMapLocation(
+                /*loadMapLocation(
                     LatLng(
                         argument.dropoffLocation.lat,
                         argument.dropoffLocation.lon
                     ), it
+                )*/
+                loadMapLocation(
+                    LatLng(
+                        argument.pickupLocation.lat,
+                        argument.pickupLocation.lon
+                    ),
+                    LatLng(
+                        argument.dropoffLocation.lat,
+                        argument.dropoffLocation.lon
+                    )
                 )
             })
 
