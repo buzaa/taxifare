@@ -66,7 +66,9 @@ class ResultActivity : AppCompatActivity() {
         viewDataBinding = DataBindingUtil.setContentView<ActivityResultBinding>(
             this, R.layout.activity_result
         ).apply {
-            viewModel = this@ResultActivity.resultViewModel
+            viewModel = this@ResultActivity.resultViewModel.apply {
+                fetchMyLocation()
+            }
             lifecycleOwner = this@ResultActivity
         }
     }
@@ -75,8 +77,8 @@ class ResultActivity : AppCompatActivity() {
         with(resultViewModel) {
             mapInitialized.observe(this@ResultActivity, Observer {
                 addMarker(
-                        resourceId = R.drawable.ic_start,
-                location = LatLng(argument.pickupLocation.lat, argument.pickupLocation.lon)
+                    resourceId = R.drawable.ic_start,
+                    location = LatLng(argument.pickupLocation.lat, argument.pickupLocation.lon)
                 )
 
                 addMarker(
@@ -85,7 +87,12 @@ class ResultActivity : AppCompatActivity() {
                 )
             })
             myLocation.observe(this@ResultActivity, Observer {
-                loadMapLocation(it)
+                loadMapLocation(
+                    LatLng(
+                        argument.dropoffLocation.lat,
+                        argument.dropoffLocation.lon
+                    ), it
+                )
             })
 
             setPublisherMapTopPadding(

@@ -20,7 +20,6 @@ class ResultMapFragment : SupportMapFragment() {
                 context = this@ResultMapFragment.requireContext()
             )
         }
-        viewModel.fetchMyLocation()
     }
 
 }

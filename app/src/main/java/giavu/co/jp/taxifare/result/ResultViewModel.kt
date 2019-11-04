@@ -88,7 +88,7 @@ class ResultViewModel(
                 val topPaddingMapCenterPoint = data.second
                 setMapTopPadding(topPaddingMapCenterPoint)
                 locationBounds?.let {
-                    moveCamera(it)
+                    moveCamera(it, true)
                 }
             },
             onError = {
