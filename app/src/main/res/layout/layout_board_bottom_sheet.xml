@@ -12,47 +12,61 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_bottom_sheet"
         android:clickable="true"
         android:focusable="true">
 
         <TextView
+            android:id="@+id/header"
             style="@style/HeadLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginRight="@dimen/dimen_10dp"
-            android:layout_marginBottom="@dimen/dimen_28dp"
             android:gravity="center"
             android:text="@string/start_location"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/pickup"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@color/main_primary_button_background_on_pressed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header" />
 
         <Button
             android:id="@+id/pickup"
             style="@style/MainPrimaryButton"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_56dp"
+            android:layout_marginBottom="@dimen/dimen_28dp"
             android:text="@string/label_start"
+            android:visibility="@{viewModel.pickupVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:onClick="@{() -> viewModel.selectPickup()}" />
 
         <Button
             android:id="@+id/dropoff"
             style="@style/MainPrimaryButton"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/dimen_10dp"
+            android:layout_marginTop="@dimen/dimen_56dp"
+            android:layout_marginBottom="@dimen/dimen_28dp"
             android:text="@string/label_destination"
-            android:visibility="gone"
+            android:visibility="@{viewModel.dropoffVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:onClick="@{() -> viewModel.selectDropOff()}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

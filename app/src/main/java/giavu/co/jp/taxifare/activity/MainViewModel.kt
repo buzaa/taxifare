@@ -10,7 +10,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
 import giavu.co.jp.taxifare.R
+import giavu.co.jp.taxifare.extension.Visibility
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
+import giavu.co.jp.taxifare.map.InitialDropoffLocation
 import giavu.co.jp.taxifare.map.MapModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -37,9 +39,15 @@ class MainViewModel(
     }
 
     private lateinit var model: MapModel
-    private val _centerLocation = MutableLiveData<LatLng>()
-    val centerLocation: LiveData<LatLng>
-        get() = _centerLocation
+    private val centerLocation = MutableLiveData<LatLng>()
+
+    private val _pickupVisibility = MutableLiveData<Visibility>()
+    val pickupVisibility: LiveData<Visibility>
+        get() = _pickupVisibility
+    private val _dropoffVisibility = MutableLiveData<Visibility>()
+    val dropoffVisibility: LiveData<Visibility>
+        get() = _dropoffVisibility
+
     private val _cameraState = MutableLiveData<CameraState>()
     val cameraState: LiveData<CameraState>
         get() = _cameraState
@@ -53,31 +61,39 @@ class MainViewModel(
         model.startCameraEvent.observeForever { _cameraState.value = CameraState.MOVE }
         model.idleCameraEvent.observeForever { _cameraState.value = CameraState.IDLE }
         observeMap()
+        initViewModel()
 
+    }
+
+    private fun initViewModel() {
+        _pickupVisibility.value = Visibility.VISIBLE
+        _dropoffVisibility.value = Visibility.GONE
     }
 
     fun selectPickup() {
-        _centerLocation.value?.let {
-            model.addMarker(resourceId = R.drawable.ic_start, location = it)
-        }.also {
-
+        centerLocation.value?.let { point ->
+            model.addMarker(resourceId = R.drawable.ic_start, location = point)
+            model.animateCamera(
+                LatLng(
+                    InitialDropoffLocation(point.latitude, point.longitude).latitude,
+                    InitialDropoffLocation(point.latitude, point.longitude).longitude
+                )
+            )
         }
+        _pickupVisibility.value = Visibility.GONE
+        _dropoffVisibility.value = Visibility.VISIBLE
     }
 
     fun selectDropOff() {
-        _centerLocation.value?.let {
+        centerLocation.value?.let {
             model.addMarker(resourceId = R.drawable.ic_goal, location = it)
         }
-    }
-
-    private fun applyInitialCenterLocation(location: LatLng) {
-        _centerLocation.value = location
     }
 
     private fun observeMap() {
         model.centerLocation.observeForever {
             Timber.d("Center : %s", it.toString())
-            _centerLocation.value = it
+            centerLocation.value = it
         }
     }
 
@@ -113,6 +129,14 @@ class MainViewModel(
                     }
                 }
             )
+    }
+
+    fun moveCamera(location: LatLng) {
+        model.moveCamera(location)
+    }
+
+    fun moveCameraAnimation(location: LatLng, callback: (() -> Unit)? = null) {
+        model.animateCamera(location, callback)
     }
 
     fun requestMyLocation() {

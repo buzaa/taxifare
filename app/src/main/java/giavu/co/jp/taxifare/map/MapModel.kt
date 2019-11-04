@@ -12,7 +12,6 @@ import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import giavu.co.jp.taxifare.helper.ImageUtils
@@ -156,20 +155,6 @@ class MapModel(
             isZoomGesturesEnabled = true
             isScrollGesturesEnabled = true
         }
-    }
-
-    fun animateCamera(
-        bounds: LatLngBounds,
-        padding: Int,
-        animationEndCallback: (() -> Unit)? = null
-    ) {
-        animateCameraInner(
-            cameraUpdate = CameraUpdateFactory.newLatLngBounds(
-                bounds,
-                padding
-            ),
-            animationEndCallback = animationEndCallback
-        )
     }
 
     fun animateCamera(latLng: LatLng, animationEndCallback: (() -> Unit)? = null) {
