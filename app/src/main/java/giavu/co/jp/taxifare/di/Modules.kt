@@ -10,6 +10,7 @@ class Modules {
     fun get(): List<Module> = listOf(
         ApiModule().module,
         ViewModelModule().module,
-        UseCaseModule().module
+        UseCaseModule().module,
+        CommonModule().module
     )
 }

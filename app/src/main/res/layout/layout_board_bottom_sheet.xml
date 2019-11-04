@@ -26,7 +26,7 @@
             android:layout_marginTop="@dimen/dimen_10dp"
             android:layout_marginRight="@dimen/dimen_10dp"
             android:gravity="center"
-            android:text="@string/start_location"
+            android:text="@{viewModel.textMessage}"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

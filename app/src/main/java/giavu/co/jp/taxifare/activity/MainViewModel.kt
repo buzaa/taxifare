@@ -17,6 +17,7 @@ import giavu.co.jp.taxifare.map.MapModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import jp.co.japantaxi.brooklyn.domain.resource.ResourceProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx2.await
@@ -30,7 +31,8 @@ import timber.log.Timber
 class MainViewModel(
     val application: Application,
     private val fetchMyLocationUseCase: FetchMyLocationUseCase,
-    private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
+    private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase,
+    private val resourceProvider: ResourceProvider
 ) : ViewModel() {
 
     enum class CameraState {
@@ -47,7 +49,9 @@ class MainViewModel(
     private val _dropoffVisibility = MutableLiveData<Visibility>()
     val dropoffVisibility: LiveData<Visibility>
         get() = _dropoffVisibility
-
+    private val _textMessage = MutableLiveData<String>()
+    val textMessage: LiveData<String>
+        get() = _textMessage
     private val _cameraState = MutableLiveData<CameraState>()
     val cameraState: LiveData<CameraState>
         get() = _cameraState
@@ -68,6 +72,7 @@ class MainViewModel(
     private fun initViewModel() {
         _pickupVisibility.value = Visibility.VISIBLE
         _dropoffVisibility.value = Visibility.GONE
+        _textMessage.value = resourceProvider.getString(R.string.start_location)
     }
 
     fun selectPickup() {
@@ -82,6 +87,7 @@ class MainViewModel(
         }
         _pickupVisibility.value = Visibility.GONE
         _dropoffVisibility.value = Visibility.VISIBLE
+        _textMessage.value = resourceProvider.getString(R.string.destination_location)
     }
 
     fun selectDropOff() {
