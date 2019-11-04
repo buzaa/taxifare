@@ -3,6 +3,7 @@ package giavu.co.jp.repository.network.api
 import giavu.co.jp.repository.model.CityDetails
 import giavu.co.jp.repository.model.TaxiFare
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 /**

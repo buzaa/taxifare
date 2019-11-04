@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLngBounds
 import giavu.co.jp.domain.model.Location
 import giavu.co.jp.domain.model.TaxiFareParameter
 import giavu.co.jp.domain.usecase.FetchTaxiFareUseCase
+import giavu.co.jp.taxifare.extension.roundWithDigit
 import giavu.co.jp.taxifare.helper.FuntionUtils
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
 import giavu.co.jp.taxifare.map.MapModel
@@ -156,8 +157,8 @@ class ResultViewModel(
             kotlin.runCatching {
                 fetchTaxiFareUseCase(
                     parameter = TaxiFareParameter(
-                        pickup = pickup.lat.toString().plus(",").plus(pickup.lon.toString()),
-                        dropoff = dropoff.lat.toString().plus(",").plus(dropoff.lon.toString())
+                        pickup = pickup.lat.roundWithDigit(5).toString().plus(",").plus(pickup.lon.roundWithDigit(5).toString()),
+                        dropoff = dropoff.lat.roundWithDigit(5).toString().plus(",").plus(dropoff.lon.roundWithDigit(5).toString())
                     ).also {
                         Timber.d(it.toString())
                     }

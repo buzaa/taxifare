@@ -44,7 +44,7 @@ class ApiFactory(
     }
 
     private fun createGsonConverterFactory(): GsonConverterFactory {
-        val gson = GsonBuilder().create()
+        val gson = GsonBuilder().setLenient().create()
         return GsonConverterFactory.create(gson)
     }
 
