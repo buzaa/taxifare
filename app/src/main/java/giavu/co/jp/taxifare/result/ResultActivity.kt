@@ -85,6 +85,8 @@ class ResultActivity : AppCompatActivity() {
                     resourceId = R.drawable.ic_goal,
                     location = LatLng(argument.dropoffLocation.lat, argument.dropoffLocation.lon)
                 )
+                // Calculate taxi fare
+                fetchTaxiFare(pickup = argument.pickupLocation, dropoff = argument.dropoffLocation)
             })
             myLocation.observe(this@ResultActivity, Observer {
                 loadMapLocation(

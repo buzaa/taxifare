@@ -115,25 +115,6 @@ class MainViewModel(
         }
     }
 
-
-    fun fetch() {
-        Timber.d("fetching")
-        viewModelScope.launch {
-            kotlin.runCatching {
-                withContext(Dispatchers.IO) {
-                    val location = fetchMyLocationUseCase().map {
-                        it.latitude.toString().plus(",").plus(it.longitude.toString())
-                    }.await()
-                    fetchNearestSupportCityUseCase(location = location)
-                }
-            }.onSuccess {
-                Timber.d(it.toString())
-            }.onFailure {
-                Timber.d(it)
-            }
-        }
-    }
-
     @SuppressLint("CheckResult")
     fun moveMyLocation() {
         fetchMyLocationUseCase()

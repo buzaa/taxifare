@@ -26,7 +26,7 @@ class ViewModelModule {
             ResultViewModel(
                 application = androidApplication(),
                 fetchMyLocationUseCase = get(),
-                fetchNearestSupportCityUseCase = get()
+                fetchTaxiFareUseCase = get()
             )
         }
     }

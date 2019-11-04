@@ -8,7 +8,9 @@ import androidx.lifecycle.*
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
-import giavu.co.jp.domain.usecase.FetchNearestSupportCityUseCase
+import giavu.co.jp.domain.model.Location
+import giavu.co.jp.domain.model.TaxiFareParameter
+import giavu.co.jp.domain.usecase.FetchTaxiFareUseCase
 import giavu.co.jp.taxifare.helper.FuntionUtils
 import giavu.co.jp.taxifare.map.FetchMyLocationUseCase
 import giavu.co.jp.taxifare.map.MapModel
@@ -17,6 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.reactivestreams.Publisher
 import timber.log.Timber
 
@@ -27,7 +30,7 @@ import timber.log.Timber
 class ResultViewModel(
     val application: Application,
     private val fetchMyLocationUseCase: FetchMyLocationUseCase,
-    private val fetchNearestSupportCityUseCase: FetchNearestSupportCityUseCase
+    private val fetchTaxiFareUseCase: FetchTaxiFareUseCase
 ) : ViewModel() {
 
     companion object {
@@ -146,6 +149,26 @@ class ResultViewModel(
                     }
                 }
             )
+    }
+
+    fun fetchTaxiFare(pickup: Location.Coordinate, dropoff: Location.Coordinate) {
+        viewModelScope.launch {
+            kotlin.runCatching {
+                fetchTaxiFareUseCase(
+                    parameter = TaxiFareParameter(
+                        pickup = pickup.lat.toString().plus(",").plus(pickup.lon.toString()),
+                        dropoff = dropoff.lat.toString().plus(",").plus(dropoff.lon.toString())
+                    ).also {
+                        Timber.d(it.toString())
+                    }
+                )
+            }.onSuccess { fares ->
+                Timber.d(fares.toString())
+
+            }.onFailure {
+                Timber.d(it)
+            }
+        }
     }
 
 
