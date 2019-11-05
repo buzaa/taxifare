@@ -53,7 +53,7 @@ class ResultViewModel(
 
     private val taxiFare = MutableLiveDataKtx<TaxiFare>()
     val resultViewState: ResultViewState by lazy {
-        ResultViewState(taxiFare = taxiFare.value)
+        ResultViewState(taxiFare = taxiFare)
     }
 
     fun initializeMap(map: GoogleMap, context: Context) {
