@@ -29,7 +29,6 @@
             layout="@layout/layout_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:viewModel="@{viewModel}" />
 
