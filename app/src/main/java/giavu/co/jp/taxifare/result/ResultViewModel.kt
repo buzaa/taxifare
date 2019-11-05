@@ -131,7 +131,12 @@ class ResultViewModel(
     }
 
     private fun setMapTopPadding(value: Int) {
-        model.setPadding(0, value, 0, 0)
+        model.setPadding(
+            left = 0,
+            top = 100,
+            right = 0,
+            bottom = value
+        )
     }
 
     @SuppressLint("CheckResult")
