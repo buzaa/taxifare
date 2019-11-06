@@ -67,11 +67,11 @@ class MainViewModel(
         model.initialize()
         model.startCameraEvent.observeForever {
             _cameraState.value = CameraState.MOVE
-            _enableState.value = true
+            _enableState.value = false
         }
         model.idleCameraEvent.observeForever {
             _cameraState.value = CameraState.IDLE
-            _enableState.value = false
+            _enableState.value = true
         }
         observeMap()
         initViewModel()
