@@ -48,6 +48,7 @@
             android:layout_marginTop="@dimen/dimen_56dp"
             android:layout_marginBottom="@dimen/dimen_28dp"
             android:text="@string/label_start"
+            android:enabled="@{viewModel.enableState}"
             android:visibility="@{viewModel.pickupVisibility}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

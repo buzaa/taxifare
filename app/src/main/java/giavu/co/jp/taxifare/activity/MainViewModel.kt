@@ -5,7 +5,6 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.model.Location
@@ -19,10 +18,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import jp.co.japantaxi.brooklyn.domain.resource.ResourceProvider
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.rx2.await
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 /**
@@ -58,6 +53,9 @@ class MainViewModel(
     private val _cameraState = MutableLiveData<CameraState>()
     val cameraState: LiveData<CameraState>
         get() = _cameraState
+    private val _enableState = MutableLiveData<Boolean>()
+    val enableState: LiveData<Boolean>
+        get() = _enableState
 
     private val pickupLocation = MutableLiveData<Location.Coordinate>()
 
@@ -67,8 +65,14 @@ class MainViewModel(
         Timber.d("initialize")
         model = MapModel(context = application.applicationContext, map = map)
         model.initialize()
-        model.startCameraEvent.observeForever { _cameraState.value = CameraState.MOVE }
-        model.idleCameraEvent.observeForever { _cameraState.value = CameraState.IDLE }
+        model.startCameraEvent.observeForever {
+            _cameraState.value = CameraState.MOVE
+            _enableState.value = true
+        }
+        model.idleCameraEvent.observeForever {
+            _cameraState.value = CameraState.IDLE
+            _enableState.value = false
+        }
         observeMap()
         initViewModel()
 
