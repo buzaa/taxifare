@@ -10,6 +10,9 @@ import giavu.co.jp.repository.model.TaxiFare
  */
 class ResultViewState(val taxiFare: LiveData<TaxiFare>) {
 
+    val area: LiveData<String> = Transformations.map(taxiFare) {
+        "Thank you for using taxi in ".plus(it.rate_area)
+    }
     val totalFare: LiveData<String> = Transformations.map(taxiFare) {
         it.total_fare.toString()
     }
