@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.model.Location
 import giavu.co.jp.taxifare.R
+import giavu.co.jp.taxifare.activity.MainActivity
 import giavu.co.jp.taxifare.databinding.ActivityResultBinding
 import giavu.co.jp.taxifare.extension.hideProgress
 import giavu.co.jp.taxifare.extension.showProgress
@@ -131,5 +132,9 @@ class ResultActivity : AppCompatActivity() {
                 it.onComplete()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        MainActivity.startWithoutStack(this)
     }
 }
