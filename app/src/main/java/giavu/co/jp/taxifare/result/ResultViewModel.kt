@@ -49,6 +49,14 @@ class ResultViewModel(
     val myLocation: LiveData<LatLng>
         get() = _myLocation
 
+    private val _showProgressRequest: MutableLiveData<Unit> = MutableLiveData()
+    val showProgressRequest: LiveData<Unit>
+        get() = _showProgressRequest
+
+    private val _hideProgressRequest: MutableLiveData<Unit> = MutableLiveData()
+    val hideProgressRequest: LiveData<Unit>
+        get() = _hideProgressRequest
+
     private val locationBounds = MutableLiveData<LatLngBounds>()
 
     private val taxiFare = MutableLiveDataKtx<TaxiFare>()
@@ -166,6 +174,7 @@ class ResultViewModel(
 
     fun fetchTaxiFare(pickup: Location.Coordinate, dropoff: Location.Coordinate) {
         viewModelScope.launch {
+            _showProgressRequest.value = Unit
             kotlin.runCatching {
                 fetchTaxiFareUseCase(
                     parameter = TaxiFareParameter(
@@ -186,9 +195,11 @@ class ResultViewModel(
             }.onSuccess { fares ->
                 Timber.d(fares.toString())
                 taxiFare.value = fares
+                _hideProgressRequest.value = Unit
 
             }.onFailure {
                 Timber.d(it)
+                _hideProgressRequest.value = Unit
             }
         }
     }

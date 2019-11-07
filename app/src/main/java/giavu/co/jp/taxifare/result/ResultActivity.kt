@@ -12,6 +12,8 @@ import com.google.android.gms.maps.model.LatLng
 import giavu.co.jp.domain.model.Location
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.databinding.ActivityResultBinding
+import giavu.co.jp.taxifare.extension.hideProgress
+import giavu.co.jp.taxifare.extension.showProgress
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.reactivestreams.Publisher
 import java.io.Serializable
@@ -111,6 +113,14 @@ class ResultActivity : AppCompatActivity() {
                 owner = this@ResultActivity,
                 publisherMapTopPadding = getPublisherLayoutBottomY()
             )
+
+            showProgressRequest.observe(this@ResultActivity, Observer {
+                showProgress()
+            })
+
+            hideProgressRequest.observe(this@ResultActivity, Observer {
+                hideProgress()
+            })
         }
     }
 
