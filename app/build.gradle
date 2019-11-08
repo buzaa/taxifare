@@ -36,6 +36,17 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
     }
+
+    flavorDimensions "google-service"
+    productFlavors {
+        dev {
+            dimension "google-service"
+            applicationIdSuffix ".dev"
+        }
+        pro {
+            dimension "google-service"
+        }
+    }
 }
 
 dependencies {
