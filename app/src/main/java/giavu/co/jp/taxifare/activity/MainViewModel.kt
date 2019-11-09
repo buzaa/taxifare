@@ -79,6 +79,7 @@ class MainViewModel(
     }
 
     private fun initViewModel() {
+        _enableState.value = true
         _pickupVisibility.value = Visibility.VISIBLE
         _dropoffVisibility.value = Visibility.GONE
         _textMessage.value = resourceProvider.getString(R.string.start_location)
