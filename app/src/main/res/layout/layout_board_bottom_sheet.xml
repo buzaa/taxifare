@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_bottom_sheet"
+        android:elevation="@dimen/dimen_10dp"
         android:clickable="true"
         android:focusable="true">
 
@@ -27,7 +28,7 @@
             android:layout_marginRight="@dimen/dimen_10dp"
             android:gravity="center"
             android:text="@{viewModel.textMessage}"
-            android:textColor="@color/white"
+            android:textColor="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,8 +36,10 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginStart="@dimen/dimen_5dp"
+            android:layout_marginEnd="@dimen/dimen_5dp"
             android:layout_marginTop="@dimen/dimen_10dp"
-            android:background="@color/main_primary_button_background_on_pressed"
+            android:background="@color/grey_primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/header" />

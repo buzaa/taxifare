@@ -24,7 +24,8 @@
     <color name="primary">#000000</color>
     <color name="dark_grey">#121212</color>
     <color name="dark_primary">#1F1B24</color>
-    <color name="dark_primary_8per">#141F1B24</color>
+    <color name="dark_primary_8per">#313030</color>
+    <color name="grey_primary">#585656</color>
     <color name="primary_variant_700">#3700B3</color>
     <color name="primary_200">#BB86FC</color>
     <color name="error">#CF6679</color>
