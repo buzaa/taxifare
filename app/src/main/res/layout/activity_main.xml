@@ -25,6 +25,20 @@
             android:fitsSystemWindows="true" />
 
         <ImageButton
+            android:id="@+id/about"
+            style="@style/SquareButton.White"
+            android:layout_width="@dimen/dimen_32dp"
+            android:layout_height="@dimen/dimen_32dp"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:elevation="@dimen/default_elevation"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/center_baseline"
+            app:onClick="@{() -> viewModel.selectAbout()}"
+            app:srcCompat="@drawable/ic_question"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
             android:id="@+id/my_location"
             style="@style/SquareButton.White"
             android:layout_width="@dimen/dimen_48dp"
@@ -45,6 +59,13 @@
             android:layout_margin="@dimen/dimen_28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:viewModel="@{viewModel}" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_baseline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.03" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

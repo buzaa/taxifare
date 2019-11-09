@@ -1,5 +1,6 @@
 package giavu.co.jp.taxifare.di
 
+import giavu.co.jp.taxifare.about.AboutAppDialogViewModel
 import giavu.co.jp.taxifare.activity.MainViewModel
 import giavu.co.jp.taxifare.result.ResultViewModel
 import org.koin.android.ext.koin.androidApplication
@@ -28,6 +29,10 @@ class ViewModelModule {
                 fetchMyLocationUseCase = get(),
                 fetchTaxiFareUseCase = get()
             )
+        }
+
+        viewModel {
+            AboutAppDialogViewModel(resourceProvider = get())
         }
     }
 }

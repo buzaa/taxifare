@@ -17,11 +17,4 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ContentDescription" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/center_baseline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.03" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

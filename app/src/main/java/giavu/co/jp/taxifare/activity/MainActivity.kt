@@ -11,14 +11,17 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import giavu.co.jp.taxifare.R
+import giavu.co.jp.taxifare.about.AboutAppDialogFragment
 import giavu.co.jp.taxifare.databinding.ActivityMainBindingImpl
 import giavu.co.jp.taxifare.result.ResultActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val REQUEST_LOCATION_PERMISSION = 1
+        private const val TAG_ABOUT_DIALOG = "tag_about_dialog"
         fun startWithoutStack(activity: Activity) {
             Intent(activity, MainActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -62,6 +65,11 @@ class MainActivity : AppCompatActivity() {
 
             currentLocationRequest.observe(this@MainActivity, Observer {
                 requestPermissionIfNeeds()
+            })
+
+            aboutRequest.observe(this@MainActivity, Observer {
+                Timber.d("Open about dialog")
+                AboutAppDialogFragment.newInstance().show(supportFragmentManager, TAG_ABOUT_DIALOG)
             })
         }
     }

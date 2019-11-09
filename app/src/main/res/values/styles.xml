@@ -64,4 +64,9 @@
         <item name="android:layout_height">@dimen/dimen_48dp</item>
     </style>
 
+    <style name="AppTheme.Dialog.Alert.RoundedCorners.White" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/bg_white_round_for_dialog</item>
+        <item name="android:windowBackground">@color/colorTransparent</item>
+    </style>
+
 </resources>
