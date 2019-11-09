@@ -5,18 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/my_location"
-        style="@style/SquareButton.White"
-        android:layout_width="@dimen/dimen_48dp"
-        android:layout_height="@dimen/dimen_48dp"
-        android:layout_margin="@dimen/default_margin"
-        app:layout_constraintTop_toTopOf="@id/center_baseline"
-        android:elevation="@dimen/default_elevation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_gps_gray_900"
-        tools:ignore="ContentDescription" />
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/center_pin"
         android:layout_width="140dp"

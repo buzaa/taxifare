@@ -24,7 +24,21 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true" />
 
+        <ImageButton
+            android:id="@+id/my_location"
+            style="@style/SquareButton.White"
+            android:layout_width="@dimen/dimen_48dp"
+            android:layout_height="@dimen/dimen_48dp"
+            android:layout_margin="@dimen/default_margin"
+            android:elevation="@dimen/default_elevation"
+            app:layout_constraintBottom_toTopOf="@id/include_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:onClick="@{() -> viewModel.selectCurrentLocation()}"
+            app:srcCompat="@drawable/ic_gps_gray_900"
+            tools:ignore="ContentDescription" />
+
         <include
+            android:id="@+id/include_bottom"
             layout="@layout/layout_board_bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

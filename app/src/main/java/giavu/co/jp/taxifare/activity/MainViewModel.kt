@@ -57,6 +57,10 @@ class MainViewModel(
     val enableState: LiveData<Boolean>
         get() = _enableState
 
+    private val _currentLocationRequest = MutableLiveData<Unit>()
+    val currentLocationRequest: LiveData<Unit>
+        get() = _currentLocationRequest
+
     private val pickupLocation = MutableLiveData<Location.Coordinate>()
 
     fun initialize(
@@ -83,6 +87,10 @@ class MainViewModel(
         _pickupVisibility.value = Visibility.VISIBLE
         _dropoffVisibility.value = Visibility.GONE
         _textMessage.value = resourceProvider.getString(R.string.start_location)
+    }
+
+    fun selectCurrentLocation() {
+        _currentLocationRequest.value = Unit
     }
 
     fun selectPickup() {

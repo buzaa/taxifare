@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.google.android.gms.maps.SupportMapFragment
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.activity.MainViewModel
-import giavu.co.jp.taxifare.extension.setOnProtectBarrageClickListener
 import kotlinx.android.synthetic.main.layout_fragment_map.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import timber.log.Timber
@@ -61,14 +59,6 @@ class MapFragment : SupportMapFragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        my_location.setOnProtectBarrageClickListener {
-            requestPermissionIfNeeds()
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         viewGroup: ViewGroup?,
@@ -109,21 +99,6 @@ class MapFragment : SupportMapFragment() {
             cameraState.observe(
                 this@MapFragment,
                 Observer { it?.also { state -> onChangedCameraState(state) } }
-            )
-        }
-    }
-
-    private fun requestPermissionIfNeeds() {
-        val permissionResultFineLocation = ContextCompat.checkSelfPermission(
-            requireContext(),
-            Manifest.permission.ACCESS_FINE_LOCATION
-        )
-        if (permissionResultFineLocation == PackageManager.PERMISSION_GRANTED) {
-            viewModel.moveMyLocation()
-        } else {
-            requestPermissions(
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_LOCATION_PERMISSION
             )
         }
     }
