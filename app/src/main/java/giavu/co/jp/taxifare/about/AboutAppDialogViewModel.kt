@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shopify.livedataktx.MutableLiveDataKtx
+import giavu.co.jp.taxifare.BuildConfig
+import giavu.co.jp.taxifare.R
 import jp.co.japantaxi.brooklyn.domain.resource.ResourceProvider
 
 /**
@@ -27,8 +29,12 @@ class AboutAppDialogViewModel(
         get() = _closeRequest
 
     fun apply() {
-        _titleMessage.value = "Title"
-        _contentMessage.value = "Content"
+        _titleMessage.value = resourceProvider.getString(R.string.label_title)
+        _contentMessage.value = resourceProvider.getString(
+            R.string.label_thank,
+            BuildConfig.VERSION_NAME,
+            BuildConfig.VERSION_CODE
+        )
     }
 
     fun close() {

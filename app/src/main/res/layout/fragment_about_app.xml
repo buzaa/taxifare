@@ -22,18 +22,18 @@
             android:layout_marginTop="@dimen/dimen_24dp"
             android:gravity="center"
             android:text="@{viewModel.titleMessage}"
-            android:textAppearance="@style/HeadLine"
+            android:textAppearance="@style/Title"
             android:textColor="?android:textColorPrimary"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Taxi Fare" />
+            tools:text="@string/label_title" />
 
         <ImageView
             android:id="@+id/taxi_image"
             android:layout_width="@dimen/dimen_56dp"
             android:layout_height="@dimen/dimen_56dp"
-            android:layout_marginTop="@dimen/dimen_24dp"
-            android:src="@drawable/ic_question"
+            android:layout_marginTop="@dimen/dimen_5dp"
+            android:src="@drawable/ic_smile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title"
@@ -44,20 +44,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16dp"
+            android:padding="@dimen/dimen_10dp"
             android:text="@{viewModel.contentMessage}"
             android:textAppearance="@style/Body"
             android:textColor="?android:textColorPrimary"
             app:layout_constraintTop_toBottomOf="@id/taxi_image"
-            tools:text="Description about app" />
+            tools:text="@string/label_thank" />
 
         <TextView
             android:id="@+id/confirm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_32dp"
-            android:padding="@dimen/dimen_10dp"
-            android:text="Close"
             android:background="@drawable/background_bottom_round_black"
+            android:paddingLeft="@dimen/dimen_28dp"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:paddingRight="@dimen/dimen_28dp"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:text="@string/label_close"
             android:textColor="@color/primary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
