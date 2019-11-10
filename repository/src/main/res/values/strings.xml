@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">repository</string>
+    <string name="base_url">https://api.taxifarefinder.com</string>
+</resources>

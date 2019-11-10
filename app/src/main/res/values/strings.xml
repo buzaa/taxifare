@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">TaxiFare</string>
+    <string name="app_name">TaxiFares</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="start_location">Please choose your starting point !</string>
+    <string name="destination_location">Please choose your destination point !</string>
+    <string name="label_start">START HERE</string>
+    <string name="label_destination">CHECK TAXI FARES</string>
+    <string name="label_thank">Thank you for using our services.\n
+    If you have any question about Taxi Fares or any ideas to improve our services, please do not be hesitated to contact with us.\n\n
+
+    Ver %1$s (%2$d) © 2019 H2 Co., Ltd</string>
+    <string name="label_title">TAXI FARES ESTIMATOR</string>
+    <string name="label_close">CLOSE</string>
+    <string name="label_you_are_here">You are here in %1$s</string>
+    <string name="label_total">TOTAL: </string>
+    <string name="label_initial_fare">Initial fare: </string>
+    <string name="label_metered_fare">Metered fare: </string>
+    <string name="label_notice">(Fares estimate may difference depending on actual route)</string>
 </resources>

@@ -8,4 +8,65 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/bg_white_round_for_dialog</item>
+        <item name="android:windowBackground">@color/colorTransparent</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:textSize">19sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+    </style>
+
+    <style name="HeadLine">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+    </style>
+
+    <style name="Body">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+    </style>
+
+    <style name="Note">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.TransparentStatusBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="SquareButton.White">
+        <item name="android:background">@drawable/bg_button_white</item>
+    </style>
+
+    <style name="SquareButton">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="MainPrimaryButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/main_primary_button_background_status_list</item>
+        <item name="android:textAppearance">@style/HeadLine</item>
+        <item name="android:layout_marginStart">@dimen/dimen_56dp</item>
+        <item name="android:layout_marginEnd">@dimen/dimen_56dp</item>
+        <item name="android:textColor">@drawable/main_primary_button_text_color_status_list</item>
+        <item name="android:layout_height">@dimen/dimen_48dp</item>
+    </style>
+
+    <style name="AppTheme.Dialog.Alert.RoundedCorners.White" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/bg_white_round_for_dialog</item>
+        <item name="android:windowBackground">@color/colorTransparent</item>
+    </style>
+
 </resources>
