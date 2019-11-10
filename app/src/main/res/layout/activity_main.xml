@@ -29,13 +29,14 @@
             style="@style/SquareButton.White"
             android:layout_width="@dimen/dimen_32dp"
             android:layout_height="@dimen/dimen_32dp"
-            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
             android:elevation="@dimen/default_elevation"
+            android:padding="@dimen/dimen_10dp"
             android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/center_baseline"
             app:onClick="@{() -> viewModel.selectAbout()}"
-            app:srcCompat="@drawable/ic_question"
+            app:srcCompat="@drawable/ic_menu_dot"
             tools:ignore="ContentDescription" />
 
         <ImageButton
