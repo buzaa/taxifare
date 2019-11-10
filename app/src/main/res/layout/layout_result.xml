@@ -13,19 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:elevation="@dimen/dimen_10dp"
         android:clickable="true"
+        android:elevation="@dimen/dimen_10dp"
         android:focusable="true">
 
         <TextView
             android:id="@+id/top_header"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@{state.area}"
             android:textColor="@color/primary_text"
-            android:gravity="center"
             android:textSize="16sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/total_price_label"
@@ -38,7 +38,7 @@
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_header"/>
+            app:layout_constraintTop_toBottomOf="@+id/top_header" />
 
         <TextView
             android:id="@+id/total_price"
@@ -52,7 +52,7 @@
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/top_header"/>
+            app:layout_constraintTop_toBottomOf="@+id/top_header" />
 
         <TextView
             android:id="@+id/initial_fare_label"
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10dp"
             android:gravity="center"
-            android:text="(Fares may difference depending on actual route)"
+            android:text="@string/label_notice"
             android:textColor="@color/grey_primary"
             android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/divide_view" />

@@ -26,6 +26,7 @@ class ViewModelModule {
         viewModel {
             ResultViewModel(
                 application = androidApplication(),
+                resourceProvider = get(),
                 fetchMyLocationUseCase = get(),
                 fetchTaxiFareUseCase = get()
             )

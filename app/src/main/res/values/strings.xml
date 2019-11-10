@@ -11,4 +11,9 @@
     Ver %1$s (%2$d) © 2019 H2 Co., Ltd</string>
     <string name="label_title">TAXI FARES ESTIMATOR</string>
     <string name="label_close">CLOSE</string>
+    <string name="label_you_are_here">You are here in %1$s</string>
+    <string name="label_total">TOTAL: </string>
+    <string name="label_initial_fare">Initial fare: </string>
+    <string name="label_metered_fare">Metered fare: </string>
+    <string name="label_notice">(Fares estimate may difference depending on actual route)</string>
 </resources>

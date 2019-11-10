@@ -22,6 +22,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import jp.co.japantaxi.brooklyn.domain.resource.ResourceProvider
 import kotlinx.coroutines.launch
 import org.reactivestreams.Publisher
 import timber.log.Timber
@@ -32,6 +33,7 @@ import timber.log.Timber
  */
 class ResultViewModel(
     val application: Application,
+    private val resourceProvider: ResourceProvider,
     private val fetchMyLocationUseCase: FetchMyLocationUseCase,
     private val fetchTaxiFareUseCase: FetchTaxiFareUseCase
 ) : ViewModel() {
@@ -61,7 +63,10 @@ class ResultViewModel(
 
     private val taxiFare = MutableLiveDataKtx<TaxiFare>()
     val resultViewState: ResultViewState by lazy {
-        ResultViewState(taxiFare = taxiFare)
+        ResultViewState(
+            resourceProvider = resourceProvider,
+            taxiFare = taxiFare
+        )
     }
 
     fun initializeMap(map: GoogleMap, context: Context) {
