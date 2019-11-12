@@ -13,6 +13,8 @@ import giavu.co.jp.domain.model.Location
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.activity.MainActivity
 import giavu.co.jp.taxifare.databinding.ActivityResultBinding
+import giavu.co.jp.taxifare.dialog.AlertDialogContents
+import giavu.co.jp.taxifare.dialog.AlertDialogFragment
 import giavu.co.jp.taxifare.extension.hideProgress
 import giavu.co.jp.taxifare.extension.showProgress
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -23,6 +25,7 @@ class ResultActivity : AppCompatActivity() {
 
     companion object {
         private const val KEY_ARGUMENT = "key_argument"
+        private const val TAG_DIALOG_FAILURE = "tag_dialog_failure"
 
         fun createIntent(
             context: Context,
@@ -121,6 +124,16 @@ class ResultActivity : AppCompatActivity() {
 
             hideProgressRequest.observe(this@ResultActivity, Observer {
                 hideProgress()
+            })
+
+            requestFailure.observe(this@ResultActivity, Observer {
+                AlertDialogFragment.newInstance(
+                    contents = AlertDialogContents(
+                        title = "Network error",
+                        message = "Please check your network connection !",
+                        buttonLabel = "close"
+                    )
+                ).show(supportFragmentManager, TAG_DIALOG_FAILURE)
             })
         }
     }
