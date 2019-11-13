@@ -13,7 +13,7 @@ import giavu.co.jp.domain.model.Location
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.activity.MainActivity
 import giavu.co.jp.taxifare.databinding.ActivityResultBinding
-import giavu.co.jp.taxifare.dialog.AlertDialogContents
+import giavu.co.jp.taxifare.dialog.AlertDialogContentsFactory
 import giavu.co.jp.taxifare.dialog.AlertDialogFragment
 import giavu.co.jp.taxifare.extension.hideProgress
 import giavu.co.jp.taxifare.extension.showProgress
@@ -128,11 +128,7 @@ class ResultActivity : AppCompatActivity() {
 
             requestFailure.observe(this@ResultActivity, Observer {
                 AlertDialogFragment.newInstance(
-                    contents = AlertDialogContents(
-                        title = "Network error",
-                        message = "Please check your network connection !",
-                        buttonLabel = "close"
-                    )
+                    contents = AlertDialogContentsFactory.create(it)
                 ).show(supportFragmentManager, TAG_DIALOG_FAILURE)
             })
         }

@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.databinding.LayoutDialogAlertFragmentBinding
+import giavu.co.jp.taxifare.dev.databinding.LayoutDialogAlertFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -40,20 +41,19 @@ class AlertDialogFragment : DialogFragment() {
         setStyle(STYLE_NO_TITLE, R.style.AppTheme_Dialog)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return DataBindingUtil.inflate<LayoutDialogAlertFragmentBinding>(
-                inflater,
-                R.layout.layout_dialog_alert_fragment,
-                container,
-                false
+            inflater,
+            R.layout.layout_dialog_alert_fragment,
+            container,
+            false
         ).apply {
             lifecycleOwner = this@AlertDialogFragment
             viewModel = this@AlertDialogFragment.viewModel
-            this.title.text = contents.title
-            this.message.text = contents.message
-            this.positiveButton.text = "OK"
-            this.negativeButton.text = "Cancel"
-
         }.root
     }
 

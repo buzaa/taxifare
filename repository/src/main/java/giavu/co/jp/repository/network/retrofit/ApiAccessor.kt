@@ -1,8 +1,6 @@
 package giavu.co.jp.repository.network.retrofit
 
 import android.content.Context
-import com.google.gson.Gson
-import giavu.co.jp.repository.network.exception.ResponseCode
 import okhttp3.ConnectionPool
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
@@ -39,11 +37,6 @@ abstract class ApiAccessor(private val context: Context): ApiFactory.HeaderAcces
 
         override fun log(message: String) {
             Timber.d(message)
-            if (message.contains("error_code")) {
-                throw Gson().fromJson(message, ResponseCode::class.java)
-            } else if (message.contains("HTTP FAILED")) {
-                throw ResponseCode("No network", "You are not connected to the Internet")
-            }
         }
     }
 
