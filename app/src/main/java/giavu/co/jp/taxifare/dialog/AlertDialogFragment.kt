@@ -8,8 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import giavu.co.jp.taxifare.R
-import giavu.co.jp.taxifare.databinding.LayoutDialogAlertFragmentBinding
-import giavu.co.jp.taxifare.dev.databinding.LayoutDialogAlertFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -53,7 +51,9 @@ class AlertDialogFragment : DialogFragment() {
             false
         ).apply {
             lifecycleOwner = this@AlertDialogFragment
-            viewModel = this@AlertDialogFragment.viewModel
+            viewModel = this@AlertDialogFragment.viewModel.apply {
+                apply(dialogContents = contents)
+            }
         }.root
     }
 
@@ -63,7 +63,7 @@ class AlertDialogFragment : DialogFragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.clickEvent.observe(viewLifecycleOwner, Observer {
+        viewModel.closeEvent.observe(viewLifecycleOwner, Observer {
             dismiss()
         })
     }

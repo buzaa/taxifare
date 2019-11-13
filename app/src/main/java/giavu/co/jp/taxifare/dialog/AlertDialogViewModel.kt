@@ -10,6 +10,10 @@ class AlertDialogViewModel : ViewModel() {
     val closeEvent: LiveData<Unit>
         get() = _closeEvent
 
+    fun apply(dialogContents: AlertDialogContents) {
+
+    }
+
     fun close() {
         _closeEvent.value = Unit
     }
