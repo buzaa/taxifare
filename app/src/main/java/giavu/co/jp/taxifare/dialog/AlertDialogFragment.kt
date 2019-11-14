@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import giavu.co.jp.taxifare.R
+import giavu.co.jp.taxifare.databinding.LayoutDialogAlertFragmentBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
