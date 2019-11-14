@@ -66,6 +66,7 @@ class AlertDialogFragment : DialogFragment() {
     private fun observeViewModel() {
         viewModel.closeEvent.observe(viewLifecycleOwner, Observer {
             dismiss()
+            requireActivity().finish()
         })
     }
 }

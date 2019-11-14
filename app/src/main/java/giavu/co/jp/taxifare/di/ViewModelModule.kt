@@ -2,6 +2,7 @@ package giavu.co.jp.taxifare.di
 
 import giavu.co.jp.taxifare.about.AboutAppDialogViewModel
 import giavu.co.jp.taxifare.activity.MainViewModel
+import giavu.co.jp.taxifare.dialog.AlertDialogViewModel
 import giavu.co.jp.taxifare.result.ResultViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -30,6 +31,10 @@ class ViewModelModule {
                 fetchMyLocationUseCase = get(),
                 fetchTaxiFareUseCase = get()
             )
+        }
+
+        viewModel {
+            AlertDialogViewModel()
         }
 
         viewModel {
