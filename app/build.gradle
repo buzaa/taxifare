@@ -77,6 +77,14 @@ dependencies {
     implementation "org.koin:koin-core-ext:$koin_version"
     implementation "com.shopify:livedata-ktx:3.0.0"
 
+    // Dagger
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+    implementation "com.google.dagger:dagger-android:$DAGGER_VERSION"
+    implementation "com.google.dagger:dagger-android-support:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-android-processor:$DAGGER_VERSION"
+
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
     implementation "de.psdev.licensesdialog:licensesdialog:2.1.0"

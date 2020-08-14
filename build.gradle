@@ -45,4 +45,5 @@ ext {
     OKHTTP_VERSION = '3.13.1'
     RETROFIT_VERSION = '2.6.1'
     TIMBER_VERSION = '4.7.1'
+    DAGGER_VERSION = '2.27'
 }

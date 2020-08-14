@@ -3,6 +3,7 @@ package giavu.co.jp.taxifare.result
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.*
 import com.google.android.gms.maps.GoogleMap
@@ -39,6 +40,7 @@ class ResultViewModel(
 ) : ViewModel() {
 
     companion object {
+        private val TAG = ResultViewModel::class.simpleName
         private const val DEFAULT_MAP_PADDING = 100.0f
     }
 
@@ -155,6 +157,7 @@ class ResultViewModel(
     }
 
     private fun setMapTopPadding(value: Int) {
+        Timber.d("Bottom padding $value")
         model.setPadding(
             left = 0,
             top = 100,
