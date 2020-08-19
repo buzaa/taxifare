@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import dagger.android.AndroidInjection
 import giavu.co.jp.taxifare.R
 import giavu.co.jp.taxifare.about.AboutAppDialogFragment
 import giavu.co.jp.taxifare.databinding.ActivityMainBindingImpl
@@ -37,7 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidInjection.inject(this)
         findViewById<View>(android.R.id.content).systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         initDataBinding()
